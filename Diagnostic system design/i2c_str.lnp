@@ -1,0 +1,4 @@
+"glcd.obj",
+"main_glcd.obj" 
+TO "i2c_str" 
+RAMSIZE(256) 

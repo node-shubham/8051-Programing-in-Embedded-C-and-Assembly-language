@@ -1,0 +1,58 @@
+C51 COMPILER V7.08   MAIN_I2C_STRING                                                       08/31/2019 14:32:53 PAGE 1   
+
+
+C51 COMPILER V7.08, COMPILATION OF MODULE MAIN_I2C_STRING
+OBJECT MODULE PLACED IN main_i2c_string.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main_i2c_string.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include"i2c.h"
+   2          #include"types.h"
+   3          #include<string.h>
+   4          #include<reg51.h>
+   5          
+   6          //sbit led=P3^5;
+   7          
+   8          #include"delay.h"
+   9          
+  10          #include"lcd1.h"
+  11          
+  12          main()
+  13          {
+  14   1      
+  15   1      u8 s1[6]="hello",s2[6]=" ",i;
+  16   1      LCD_init();
+  17   1      LCD_cmd(0x80);
+  18   1      LCD_str("he");
+  19   1      for(i=0;i<5;i++)
+  20   1      i2cdevwrite(0xa0,i,s1[i]);
+  21   1      LCD_cmd(0x80);
+  22   1      LCD_str("hell");
+  23   1      for(i=0;i<5;i++)
+  24   1      s2[i]=i2cdevread(0xa0,i);
+  25   1      delay_ms(2000);
+  26   1      LCD_str("hell0");
+  27   1      while(1)
+  28   1      {
+  29   2      LCD_cmd(0x80);
+  30   2      LCD_str(s2);
+  31   2      /*if(strcmp(s1,s2)==0)
+  32   2      led=~led;*/
+  33   2      }
+  34   1      }
+  35          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    153    ----
+   CONSTANT SIZE    =     26    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

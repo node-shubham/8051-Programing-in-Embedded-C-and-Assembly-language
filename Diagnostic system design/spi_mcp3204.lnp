@@ -1,0 +1,6 @@
+"lcd.obj",
+"delay.obj",
+"main_i2c_string.obj",
+"i2c.obj" 
+TO "spi_mcp3204" 
+RAMSIZE(256) 

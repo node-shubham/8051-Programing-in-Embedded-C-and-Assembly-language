@@ -1,0 +1,39 @@
+C51 COMPILER V7.08   MAIN_GLCD                                                             08/30/2019 15:15:28 PAGE 1   
+
+
+C51 COMPILER V7.08, COMPILATION OF MODULE MAIN_GLCD
+OBJECT MODULE PLACED IN main_glcd.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main_glcd.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include"glcd.h"
+   2          
+   3          
+   4          void main()
+   5          {
+   6   1              glcd_init();
+   7   1              glcd_clr(0);
+   8   1              write_cmd(0xc0);
+   9   1              glcd_char(0xb8,0x40,'1');
+  10   1              delay(150);
+  11   1              write_cmd(0xc5);
+  12   1              glcd_str(0xbd,0x47,"vector");
+  13   1              delay(150);
+  14   1      
+  15   1              while(1);
+  16   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     56    ----
+   CONSTANT SIZE    =      7    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
