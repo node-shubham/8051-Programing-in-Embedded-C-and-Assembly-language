@@ -1,0 +1,188 @@
+C51 COMPILER V9.56.0.0   LCD_EEPROM                                                        07/05/2017 13:13:04 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE LCD_EEPROM
+OBJECT MODULE PLACED IN .\Objects\lcd_eeprom.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE lcd_eeprom.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\lcd_eeprom.lst) TABS(2) OBJECT(.\Objects\lcd_eeprom.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include<intrins.h>
+   3          #include<serial.h>
+   4          //#include<lcd1.h>
+   5          bit ack;
+   6          sbit sda=P2^0;
+   7          sbit scl=P2^1;
+   8          void start()
+   9          {
+  10   1        sda=1;
+  11   1        scl=1;
+  12   1        _nop_();
+  13   1        _nop_();
+  14   1        sda=0;
+  15   1        scl=0;
+  16   1      }
+  17          void stop()
+  18          {
+  19   1        sda=0;
+  20   1        scl=1;
+  21   1        _nop_();
+  22   1        _nop_();
+  23   1        sda=1;
+  24   1        scl=0;
+  25   1      }
+  26          void acknowledge()
+  27          {
+  28   1        scl=1;
+  29   1        _nop_();
+  30   1        _nop_();
+  31   1        scl=0;
+  32   1      }
+  33          void send_byte(unsigned char value)
+  34          {
+  35   1        unsigned int i;
+  36   1        unsigned char send;
+  37   1        send=value;
+  38   1        for(i=0;i<8;i++)
+  39   1        {
+  40   2          sda=send/128;
+  41   2          send=send<<1;
+  42   2          scl=1;
+  43   2          _nop_();
+  44   2          _nop_();
+  45   2          scl=0;
+  46   2        }
+  47   1        ack=sda;
+  48   1        sda=0;
+  49   1      }
+  50          unsigned char read_byte()
+  51          {
+  52   1        unsigned int i;
+  53   1        unsigned char reead=0; sda=1;
+  54   1        for(i=0;i<8;i++)
+C51 COMPILER V9.56.0.0   LCD_EEPROM                                                        07/05/2017 13:13:04 PAGE 2   
+
+  55   1        {
+  56   2          reead=reead<<1;
+  57   2          scl=1;
+  58   2          _nop_();
+  59   2          _nop_();
+  60   2          if(sda==1)
+  61   2            reead++;
+  62   2          scl=0;
+  63   2        }
+  64   1        sda=0;
+  65   1        return reead;
+  66   1      }
+  67          void save(char *s)
+  68          {  int i;
+  69   1        start();
+  70   1        send_byte(0xA0);
+  71   1        acknowledge();
+  72   1        send_byte(0x00);
+  73   1        acknowledge();
+  74   1        for(i=0;s[i]!='\0';i++)
+  75   1        {
+  76   2          send_byte(s[i]);
+  77   2          acknowledge();
+  78   2         }
+  79   1         stop();
+  80   1         acknowledge();
+  81   1      }
+  82          void Read()
+  83          {
+  84   1        int i;
+  85   1        char c;
+  86   1        //LCDCommand(0xc0);
+  87   1        start();
+  88   1        send_byte(0xA0);
+  89   1        acknowledge();
+  90   1        send_byte(0x00);
+  91   1        acknowledge();
+  92   1        start();
+  93   1        send_byte(0xA1);
+  94   1        acknowledge();
+  95   1        for(i=0;i<20;i++)
+  96   1        {
+  97   2          c=read_byte();
+  98   2          //LCDData(c);
+  99   2          tx(c);
+ 100   2          acknowledge();
+ 101   2          if(c=='*')break;
+ 102   2        }
+ 103   1        stop();
+ 104   1        acknowledge();
+ 105   1      }
+ 106          
+ 107          void xputs(char *s)
+ 108          {
+ 109   1        int i;
+ 110   1          for(i=0;s[i]!='\0';i++)tx(s[i]);
+ 111   1        }
+ 112          void main()
+ 113          {
+ 114   1        int temp;
+ 115   1        char c;
+ 116   1        char buffer[60];
+C51 COMPILER V9.56.0.0   LCD_EEPROM                                                        07/05/2017 13:13:04 PAGE 3   
+
+ 117   1        int i;
+ 118   1        //LCDInit();
+ 119   1        init();
+ 120   1        temp=0;
+ 121   1        while(1)
+ 122   1        {
+ 123   2          tx(10);tx(13);
+ 124   2          xputs("Select the option");
+ 125   2          tx(10);tx(13);
+ 126   2          xputs("1)Save data");
+ 127   2          tx(10);tx(13);
+ 128   2          xputs("2)Read data");
+ 129   2          tx(10);tx(13);
+ 130   2          xputs("3)Exit");
+ 131   2          tx(10);tx(13);
+ 132   2         //}
+ 133   2         c=rx();
+ 134   2         if(c=='1')
+ 135   2         {
+ 136   3          xputs("Enter the data [* to Stop]");
+ 137   3          for(i=0;i<20;i++)
+ 138   3          {
+ 139   4            temp++;
+ 140   4              if(temp>16)
+ 141   4              {
+ 142   5                tx(10);tx(13);
+ 143   5                temp=0;
+ 144   5              
+ 145   5            c=rx();
+ 146   5            tx(c);
+ 147   5            buffer[i]=c;
+ 148   5            if(c=='*')
+ 149   5            {
+ 150   6            
+ 151   6              buffer[++i]=0;
+ 152   6              break;
+ 153   6            }
+ 154   5          }
+ 155   4          save(buffer);
+ 156   4        }
+ 157   3         }
+ 158   2         if(c=='2')Read();
+ 159   2         if(c=='3')break;
+ 160   2      } }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    481    ----
+   CONSTANT SIZE    =     76    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      71
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

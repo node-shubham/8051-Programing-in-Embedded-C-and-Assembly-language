@@ -1,0 +1,1 @@
+"lcd_eeprom.c" OPTIMIZE (8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\lcd_eeprom.lst) TABS (2) OBJECT(.\Objects\lcd_eeprom.obj)
