@@ -1,0 +1,32 @@
+C51 COMPILER V7.08   SPI                                                                   09/03/2019 13:43:35 PAGE 1   
+
+
+C51 COMPILER V7.08, COMPILATION OF MODULE SPI
+OBJECT MODULE PLACED IN spi.OBJ
+COMPILER INVOKED BY: C:\Keil2\C51\BIN\C51.EXE spi.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include"spi.h"
+   2          #include"types.h"
+   3          
+   4          
+   5          u8 spi(u8 byte)
+   6          {
+   7   1      u8 i,buff=0;
+   8   1      for(i=0;i<8;i++)
+   9   1      {
+  10   2      clk=0;
+*** ERROR C202 IN LINE 10 OF SPI.C: 'clk': undefined identifier
+  11   2      mosi=(byte>>(7-i))&1;
+*** ERROR C202 IN LINE 11 OF SPI.C: 'mosi': undefined identifier
+  12   2      clk=1;
+*** ERROR C202 IN LINE 12 OF SPI.C: 'clk': undefined identifier
+  13   2      if(miso)
+*** ERROR C202 IN LINE 13 OF SPI.C: 'miso': undefined identifier
+  14   2      buff |=0x80>>i;
+  15   2      }
+  16   1      return buff;
+  17   1      }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  4 ERROR(S)

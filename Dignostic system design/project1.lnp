@@ -1,0 +1,9 @@
+"glcd.obj",
+"mcp3204.obj",
+"uart.obj",
+"i2c.obj",
+"main_project.obj",
+"lcd.obj",
+"delay.obj" 
+TO "project1" 
+RAMSIZE(256) 

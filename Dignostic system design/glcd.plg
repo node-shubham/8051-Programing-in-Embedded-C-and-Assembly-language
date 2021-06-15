@@ -1,0 +1,83 @@
+<html>
+<body>
+<pre>
+<h1>µVision2 Build Log</h1>
+<h2>Project:</h2>
+V:\Diagnostic_system_design\Diagnostic_system.uv2
+Project File Date:  08/30/2019
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling i2c.c...
+I2C.C(78): warning C206: 'delay_ms': missing function-prototype
+I2C.C(78): error C267: 'delay_ms': requires ANSI-style prototype
+compiling main_i2c_string.c...
+MAIN_I2C_STRING.C(19): warning C206: 'delay_ms': missing function-prototype
+MAIN_I2C_STRING.C(19): error C267: 'delay_ms': requires ANSI-style prototype
+compiling lcd.c...
+LCD.C(16): warning C206: 'delay_ms': missing function-prototype
+LCD.C(16): error C267: 'delay_ms': requires ANSI-style prototype
+Target not created
+Build target 'Target 1'
+compiling i2c.c...
+compiling main_i2c_string.c...
+compiling lcd.c...
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _DELAY_MS
+    MODULE:  i2c.obj (I2C)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY_MS
+    MODULE:  i2c.obj (I2C)
+    ADDRESS: 0273H
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _DELAY_MS
+    MODULE:  main_i2c_string.obj (MAIN_I2C_STRING)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY_MS
+    MODULE:  main_i2c_string.obj (MAIN_I2C_STRING)
+    ADDRESS: 0171H
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _DELAY_MS
+    MODULE:  lcd.obj (LCD)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY_MS
+    MODULE:  lcd.obj (LCD)
+    ADDRESS: 0280H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY_MS
+    MODULE:  lcd.obj (LCD)
+    ADDRESS: 0189H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY_MS
+    MODULE:  lcd.obj (LCD)
+    ADDRESS: 0195H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY_MS
+    MODULE:  lcd.obj (LCD)
+    ADDRESS: 01A1H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY_MS
+    MODULE:  lcd.obj (LCD)
+    ADDRESS: 01ADH
+Program Size: data=25.0 xdata=0 code=711
+creating hex file from "glcd"...
+"glcd" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+compiling i2c.c...
+compiling main_i2c_string.c...
+compiling lcd.c...
+compiling delay.c...
+linking...
+Program Size: data=25.0 xdata=0 code=741
+creating hex file from "glcd"...
+"glcd" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling i2c.c...
+compiling main_i2c_string.c...
+compiling lcd.c...
+compiling delay.c...
+linking...
+Program Size: data=25.0 xdata=0 code=741
+creating hex file from "glcd"...
+"glcd" - 0 Error(s), 0 Warning(s).

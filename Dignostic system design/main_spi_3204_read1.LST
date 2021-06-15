@@ -1,0 +1,43 @@
+C51 COMPILER V7.08   MAIN_SPI_3204_READ1                                                   08/30/2019 12:20:12 PAGE 1   
+
+
+C51 COMPILER V7.08, COMPILATION OF MODULE MAIN_SPI_3204_READ1
+OBJECT MODULE PLACED IN main_spi_3204_read1.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main_spi_3204_read1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include"mcp3204.h"
+   2          #include"lcd1.h"
+   3          #include<stdio.h>
+   4          #include"delay.h"
+   5          
+   6          main()
+   7          {
+   8   1      float adcvalF;
+   9   1      char temp[10];
+  10   1      LCD_init();
+  11   1      while(1)
+  12   1      {
+  13   2      adcvalF=read1adc_mcp3204(0);  //adcvalF*=100.0; // for calibration of LM325
+  14   2      sprintf(temp,"%f",adcvalF);
+  15   2      delay_ms(100);
+  16   2      //LCD_cmd(0x01);
+  17   2      LCD_cmd(0x80);
+  18   2      LCD_str(temp);
+  19   2      }
+  20   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     65    ----
+   CONSTANT SIZE    =      3    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      14
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
