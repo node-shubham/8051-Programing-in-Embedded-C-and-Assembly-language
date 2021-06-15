@@ -1,0 +1,10 @@
+CSEG AT 0
+MOV R0, #0X01
+MOV R1, #0X03
+L1:
+	INC R1 
+	CJNE R1, #0X09, L1
+	MOV SP, #0X2F
+	
+END	
+	

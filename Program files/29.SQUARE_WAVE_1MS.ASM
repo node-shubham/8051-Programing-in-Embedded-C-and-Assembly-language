@@ -1,0 +1,17 @@
+CSEG AT 0  ; 1ms delay
+	MOV TMOD, #01 ; 	T-0 MODE-1 : 16 BIT MODE
+	L1: 
+	MOV TL0, #25h
+	MOV TH0, #0fch
+	CPL P1.5
+	ACALL DELAY
+	SJMP L1
+	DELAY: 
+	SETB TR0
+	WAIT: JNB TF0, WAIT
+	CLR TR0
+	CLR TF0
+	RET
+END	   		
+	
+	

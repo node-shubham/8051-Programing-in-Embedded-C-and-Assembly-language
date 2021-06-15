@@ -1,0 +1,6 @@
+CSEG AT 0
+	MOV R0, #0XF0
+	MOV A, R0
+	RL A   ; M[A] <- #0XE1 CARRY ADDED IN RIGHT 
+	;RLC A ; M[A] <- #0XE0 
+END
