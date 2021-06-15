@@ -1,6 +1,0 @@
-"lcd.obj",
-"delay.obj",
-"main_spi_3204_read1.obj",
-"mcp3204.obj" 
-TO "Diagnostic_system" 
-RAMSIZE(256) 

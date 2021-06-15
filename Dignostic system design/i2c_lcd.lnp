@@ -1,3 +1,0 @@
-"uart_tx_char.obj" 
-TO "i2c_lcd" 
-RAMSIZE(256) 

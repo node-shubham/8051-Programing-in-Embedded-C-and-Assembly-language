@@ -1,3 +1,0 @@
-"uart_tx_char.obj" 
-TO "uart_1" 
-RAMSIZE(256) 

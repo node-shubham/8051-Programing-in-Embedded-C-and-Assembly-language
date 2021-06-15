@@ -1,6 +1,0 @@
-"i2c.obj",
-"main_i2c_string.obj",
-"lcd.obj",
-"delay.obj" 
-TO "glcd" 
-RAMSIZE(256) 
